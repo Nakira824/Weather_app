@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import './App.css'
 import search from './assets/icons/search.svg'
 import { useStateContext } from './Context'
-import BackgroundLayout from './Components/BackgroundLayout';
+import { BackgroundLayout } from './Components'
 
 function App() {
 

@@ -1,13 +1,13 @@
 import { useContext, createContext, useState, useEffect } from "react";
-import axios from "axios";
+import axios from "axios"
 
 const StateContext = createContext();
 
 export const StateContextProvider = ({ children }) => {
-    const [weather, setWeather] = useState({});
-    const [value, setValue] = useState([]);
-    const [place, setPlace] = useState('Nashville');
-    const [location, setLocation] = useState('');
+    const [weather, setWeather] = useState({})
+    const [values, setValues] = useState([])
+    const [place, setPlace] = useState('Nashville')
+    const [thisLocation, setLocation] = useState('')
 
     // fetch api
     const fetchWeather = async() => {
@@ -22,28 +22,28 @@ export const StateContextProvider = ({ children }) => {
                 shortColumnNames: 0,
             },
             headers: {
-                'X-RapidAPI-Key' : process.env.REACT_APP_API_KEY,
+                'X-RapidAPI-Key' : import.meta.env.VITE_API_KEY,
                 'X-RapidAPI-Host' : 'visual-crossing-weather.p.rapidapi.com'
             }
-        };
+        }
 
         try{
             const response = await axios.request(options);
-            console.log(response.data);
-            const thisData = Object.values(response.data.locationss)[0];
-            setLocation(thisData.address);
-            setValue(thisData.values);
-            setWeather(thisData.values[0]);
+            console.log(response.data)
+            const thisData = Object.values(response.data.locationss)[0]
+            setLocation(thisData.address)
+            setValues(thisData.values)
+            setWeather(thisData.values[0])
         }catch(e) {
             console.error(e);
             // if api throws error.
-            alert('This place does not exist');
+            alert('This place does not exist')
         }
     }
 
     useEffect(() => {
         fetchWeather();
-    }, [place]);
+    }, [place])
 
     useEffect(() => {
         console.log(values);
@@ -54,11 +54,11 @@ export const StateContextProvider = ({ children }) => {
             weather,
             setPlace,
             values,
-            location
+            thisLocation
         }}>
             {children}
         </StateContext.Provider>
     );
 };
 
-export const useStateContext = () => useContext(StateContext);
+export const useStateContext = () => useContext(StateContext)
