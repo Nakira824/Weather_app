@@ -22,6 +22,9 @@ function App() {
        </div>
       </nav>
       <BackgroundLayout></BackgroundLayout>
+      <main className='w-full flex flex-wrap gap-8 py-4 px-[10%] items-center justify-center'>
+
+      </main>
     </div>
   )
 }
