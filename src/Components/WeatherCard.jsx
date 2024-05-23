@@ -43,11 +43,15 @@ const WeatherCard = ({
     }
   }, [iconString])
 
+  const temperatureFahrenheit = (temperature * 9/5) + 32;
+  const displayTemperature = `${temperatureFahrenheit.toFixed(1)} °F`;
+  const displayHeatIndex = heatIndex ? `${((heatIndex * 9/5) + 32).toFixed(1)} °F` : 'N/A';
+
   return (
     <div className='w-[22rem] min-w-[22rem] h-[30rem] glassCard p-4'>
       <div className='flex w-full just-center, item-center gap-4 mt-12 mb-4'>
         <img src={icon} alt="weather_icon" />
-        <p className='font-bold text-5xl flex justify-center items-center'>{temperature} &deg;C</p>
+        <p className='font-bold text-5xl flex justify-center items-center'>{displayTemperature}</p>
       </div>
       <div className='font-bold text-center text-xl'>
         {place}
@@ -62,7 +66,7 @@ const WeatherCard = ({
       </div>
       <div className='w-full p-3 mt-4 flex justify-between items-center'>
         <p className='font-semibold text-lg'>Heat Index</p>
-        <p className='text-lg'>{heatIndex ? heatIndex : 'N/A'}</p>
+        <p className='text-lg'>{displayHeatIndex}</p>
       </div>
       <hr className='bg-slate-600' />
       <div className='w-full p-4 flex justify-center items-center text-3xl font-semibold'>

@@ -30,6 +30,9 @@ const MiniCard = ({time, temp, iconString}) => {
       }
     }
   },[iconString])
+
+  const temperatureFahrenheit = (temp * 9/5) + 32;
+  const displayTemperature = `${temperatureFahrenheit.toFixed(1)}°F`;
   return (
     <div className='glassCard w-[10rem] h-[10rem] p-4 flex flex-col '>
      <p className='text-center'>
@@ -39,7 +42,7 @@ const MiniCard = ({time, temp, iconString}) => {
       <div className='w-full flex justify-center items-center flex-1'>
         <img src={icon} alt='weather' className='w-[4rem] h-[4rem]' />
       </div>
-      <p className='text-center font-bold'>{temp}&deg;C</p>
+      <p className='text-center font-bold'>{displayTemperature}</p>
     </div>
   )
 }

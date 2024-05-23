@@ -7,13 +7,17 @@ import { BackgroundLayout, WeatherCard, MiniCard } from './Components'
 function App() {
 
   const [input, setInput] = useState('')
+  const [unit, setUnit] = useState('C');
   const { weather, thisLocation, values, place, setPlace } = useStateContext()
 
 
   const submitCity = () => {
     setPlace(input)
     setInput('')
-  }
+  };
+  const toggleUnit = () => {
+    setUnit(prevUnit => (prevUnit === 'C' ? 'F' : 'C'));
+  };
   
   return (
     <div className='w-full h-screen text-white px-8'>
